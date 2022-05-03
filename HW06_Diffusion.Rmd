@@ -1,14 +1,18 @@
 ---
 title: "HW06_Diffusion"
-author: "Julia Parish"
-date: '2022-05-03'
-output: html_document
+author: "Dani Sclafani, Julia Parish, Kristin Gill"
+date: '2022-05-05'
+header-includes:
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+output: 
+  pdf_document:
+    extra_dependencies: ["float"]
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
-
 
 
 ### Load Libraries

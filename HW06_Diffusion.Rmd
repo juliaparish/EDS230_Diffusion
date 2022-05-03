@@ -1,0 +1,82 @@
+---
+title: "HW06_Diffusion"
+author: "Julia Parish"
+date: '2022-05-03'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+### Load Libraries
+
+```{r}
+library(tidyverse)
+library(deSolve)
+library(here)
+```
+
+
+# Source Diffusion Function
+
+```{r}
+source(here("R/diffusion.R"))
+```
+
+Diffusion Model Parameters
+
+- `initialC` = initial concentration (mg/L)
+- `dx` = length of each segment (m)
+- `nx` = number of discrete segments (m)
+- `nt` = number of discrete time intervals (s)
+- `dt` =  seconds in each time interval (s)
+- `area` = area of cross section of container (m2)
+- `D` = diffusivity (how easily the chemical diffuses (s/m2)  
+
+# Run the in class difdussion model examples
+```{r}
+# run our diffusion model (iterative difference equation) with initial concentration of 10, for 8 timestep (size 1m), and 10 space steps (size 1s)
+
+# using diffusion parameters 0.5 s/m2, 10 m2
+result = diff1(initialC = 10, nx = 10, dx = 1, nt = 8, dt = 1, D = 0.5, area = 10)
+
+# a list is returned with our 3 data frames for concentration (conc), qin and qout
+result
+```
+
+```{r}
+# used filled contour to plot results
+head(result$conc)
+
+filled.contour(result$conc, xlab="Time", ylab="Distance")
+
+# or if you prefer this orientation (Distance on x axis)
+filled.contour(t(result$conc), ylab="Time", xlab="Distance")
+```
+
+# In class example of changing parameters (diffusivity D, and space and time steps (dx, dt))
+
+```{r}
+# changes diffusivity and other parameters particularly
+# diffusivity, dx and dt
+
+res = diff1(initialC = 10, nx = 10, dx = 1, nt = 10, dt = 30, D = 0.006, area = 1)
+
+filled.contour(res$conc, xlab="Time", ylab="Distance")
+
+# we can also see how much material moved from place to place each time step
+filled.contour(res$qin, xlab="Time", ylab="Distance")
+
+```
+
+# Homework Responses
+
+# Change diffusivity and length of segment
+
+
+
+
+# Change space step (dx), time step (dt)

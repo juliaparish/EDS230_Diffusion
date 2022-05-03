@@ -80,7 +80,78 @@ filled.contour(res$qin, xlab="Time", ylab="Distance")
 
 # Change diffusivity and length of segment
 
+```{r}
+# changes diffusivity (D) and length of segment (dx)
+# original params: initialC = 10, nx = 10, dx = 1, nt = 8, dt = 1, D = 0.5, area = 10
 
+resultA = diff1(initialC = 10, nx = 10, dx = 4, nt = 8, dt = 1, D = 1, area = 10)
+
+resultA_plot1 <- filled.contour(resultA$conc, 
+               color.palette = function(n) hcl.colors(n, "GnBu", rev = TRUE),
+               plot.title = title(main = "Diffusion - Change in Diffusivity and Segment Length", xlab="Time", ylab = "Distance"))
+
+resultA_plot1
+```
+
+```{r}
+# how much material moved from place to place each time step
+resultA_plot2 <-filled.contour(resultA$qin, 
+               color.palette = function(n) hcl.colors(n, "GnBu", rev = TRUE),
+               plot.title = title(main = "Diffusion Movement", xlab="Time", ylab="Distance"))
+
+resultA_plot2
+```
 
 
 # Change space step (dx), time step (dt)
+
+```{r}
+# changes length of segment (dx) and time (dt)
+# original params: initialC = 10, nx = 10, dx = 1, nt = 8, dt = 1, D = 0.5, area = 10
+
+resultb = diff1(initialC = 10, nx = 10, dx = .5, nt = 8, dt = .5, D = 0.5, area = 10)
+
+resultB_plot1 <- filled.contour(resultb$conc, 
+               color.palette = function(n) hcl.colors(n, "BuPu", rev = TRUE),
+               plot.title = title(main = "Diffusion - Change in Diffusivity and Segment Length", xlab="Time", ylab = "Distance"))
+
+resultB_plot1
+```
+
+
+```{r}
+# how much material moved from place to place each time step
+resultB_plot2 <-filled.contour(resultb$qin, 
+               color.palette = function(n) hcl.colors(n, "BuPu", rev = TRUE),
+               plot.title = title(main = "Diffusion Movement", xlab="Time", ylab="Distance"))
+
+resultB_plot2
+```
+
+
+# Save the Plots
+
+```{r}
+# ggsave(file = "resultA_plot1.png", plot = resultA_plot1,
+#   scale = 1, width = 6, height = 6,
+#   units = "in", dpi = 300)
+```
+
+```{r, eval=FALSE}
+# ggsave(file = "resultA_plot2.png", plot = resultA_plot2,
+#   scale = 1, width = 6, height = 6,
+#   units = "in", dpi = 300)
+```
+
+```{r, eval=FALSE}
+# ggsave(file = "resultB_plot1.png", plot = resultB_plot1,
+#   scale = 1, width = 6, height = 6,
+#   units = "in", dpi = 300)
+```
+
+```{r, eval=FALSE}
+# ggsave(file = "resultB_plot2.png", plot = resultB_plot2,
+#   scale = 1, width = 6, height = 6,
+#   units = "in", dpi = 300)
+```
+

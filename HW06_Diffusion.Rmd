@@ -21,6 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tidyverse)
 library(deSolve)
 library(here)
+library(cowplot)
 ```
 
 
@@ -113,7 +114,7 @@ resultb = diff1(initialC = 10, nx = 10, dx = .5, nt = 8, dt = .5, D = 0.5, area 
 
 resultB_plot1 <- filled.contour(resultb$conc, 
                color.palette = function(n) hcl.colors(n, "BuPu", rev = TRUE),
-               plot.title = title(main = "Diffusion - Change in Diffusivity and Segment Length", xlab="Time", ylab = "Distance"))
+               plot.title = title(main = "Diffusion - Change in Time & Segment Length", xlab="Time", ylab = "Distance"))
 
 resultB_plot1
 ```
@@ -129,29 +130,28 @@ resultB_plot2
 ```
 
 
-# Save the Plots
+# Change all parameters
+ 
+```{r}
+# original params: initialC = 10, nx = 10, dx = 1, nt = 8, dt = 1, D = 0.5, area = 10
+
+resultc = diff1(initialC = 50, nx = 30, dx = 6, nt = 10, dt = 10, D = .7, area = 60)
+
+resultC_plot1 <- filled.contour(resultc$conc, 
+               color.palette = function(n) hcl.colors(n, "spectral", rev = TRUE),
+               plot.title = title(main = "Diffusion - Change in All Parameters", xlab="Time", ylab = "Distance"))
+
+resultC_plot1
+```
 
 ```{r}
-# ggsave(file = "resultA_plot1.png", plot = resultA_plot1,
-#   scale = 1, width = 6, height = 6,
-#   units = "in", dpi = 300)
+# how much material moved from place to place each time step
+resultC_plot2 <-filled.contour(resultc$qin, 
+               color.palette = function(n) hcl.colors(n, "spectral", rev = TRUE),
+               plot.title = title(main = "Diffusion Movement", xlab="Time", ylab="Distance"))
+
+resultC_plot2
 ```
 
-```{r, eval=FALSE}
-# ggsave(file = "resultA_plot2.png", plot = resultA_plot2,
-#   scale = 1, width = 6, height = 6,
-#   units = "in", dpi = 300)
-```
 
-```{r, eval=FALSE}
-# ggsave(file = "resultB_plot1.png", plot = resultB_plot1,
-#   scale = 1, width = 6, height = 6,
-#   units = "in", dpi = 300)
-```
-
-```{r, eval=FALSE}
-# ggsave(file = "resultB_plot2.png", plot = resultB_plot2,
-#   scale = 1, width = 6, height = 6,
-#   units = "in", dpi = 300)
-```
 

@@ -98,7 +98,7 @@ resultA_plot1
 # how much material moved from place to place each time step
 resultA_plot2 <-filled.contour(resultA$qin, 
                color.palette = function(n) hcl.colors(n, "GnBu", rev = TRUE),
-               plot.title = title(main = "Diffusion Movement", xlab="Time", ylab="Distance"))
+               plot.title = title(main = "Diffusion Movement - Change in Diffusivity & Segment Length", xlab="Time", ylab="Distance"))
 
 resultA_plot2
 ```
@@ -124,7 +124,7 @@ resultB_plot1
 # how much material moved from place to place each time step
 resultB_plot2 <-filled.contour(resultb$qin, 
                color.palette = function(n) hcl.colors(n, "BuPu", rev = TRUE),
-               plot.title = title(main = "Diffusion Movement", xlab="Time", ylab="Distance"))
+               plot.title = title(main = "Diffusion Movement - Change in Time & Segment Length", xlab="Time", ylab="Distance"))
 
 resultB_plot2
 ```
@@ -148,7 +148,7 @@ resultC_plot1
 # how much material moved from place to place each time step
 resultC_plot2 <-filled.contour(resultc$qin, 
                color.palette = function(n) hcl.colors(n, "spectral", rev = TRUE),
-               plot.title = title(main = "Diffusion Movement", xlab="Time", ylab="Distance"))
+               plot.title = title(main = "Diffusion Movement - Change in All Parameters", xlab="Time", ylab="Distance"))
 
 resultC_plot2
 ```

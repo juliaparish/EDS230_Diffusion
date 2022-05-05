@@ -41,7 +41,7 @@ Diffusion Model Parameters
 - `area` = area of cross section of container (m2)
 - `D` = diffusivity (how easily the chemical diffuses (s/m2)  
 
-# Run the in class difdussion model examples
+# Run the in class diffussion model examples
 ```{r}
 # run our diffusion model (iterative difference equation) with initial concentration of 10, for 8 timestep (size 1m), and 10 space steps (size 1s)
 
@@ -84,6 +84,7 @@ filled.contour(res$qin, xlab="Time", ylab="Distance")
 ```{r}
 # changes diffusivity (D) and length of segment (dx)
 # original params: initialC = 10, nx = 10, dx = 1, nt = 8, dt = 1, D = 0.5, area = 10
+# increased segment length to 4 m, diffusivity to 1 s/m2
 
 resultA = diff1(initialC = 10, nx = 10, dx = 4, nt = 8, dt = 1, D = 1, area = 10)
 
@@ -109,6 +110,7 @@ resultA_plot2
 ```{r}
 # changes length of segment (dx) and time (dt)
 # original params: initialC = 10, nx = 10, dx = 1, nt = 8, dt = 1, D = 0.5, area = 10
+# decreased length of segment to 0.5m, and time in each interval to 0.5 second
 
 resultb = diff1(initialC = 10, nx = 10, dx = .5, nt = 8, dt = .5, D = 0.5, area = 10)
 
@@ -129,11 +131,22 @@ resultB_plot2 <-filled.contour(resultb$qin,
 resultB_plot2
 ```
 
+- `initialC` = initial concentration (mg/L)
+- `dx` = length of each segment (m)
+- `nx` = number of discrete segments (m)
+- `nt` = number of discrete time intervals (s)
+- `dt` =  seconds in each time interval (s)
+- `area` = area of cross section of container (m2)
+- `D` = diffusivity (how easily the chemical diffuses (s/m2)  
+
 
 # Change all parameters
  
 ```{r}
 # original params: initialC = 10, nx = 10, dx = 1, nt = 8, dt = 1, D = 0.5, area = 10
+# increased initial concentration to 50 mg/L, number of segments from 10 to 30, length of segment (dx) to from 1 m to 6 m, # of time intervals to 10 from 8, seconds in each time interval from 1 sec to 10 sec, diffusivity to 0.7 s/m2 and the area of container from 10 m2 to 60 m2.
+
+# making slight changes to dx (length of segment), dt (secs in each time interval) had significant influences to the diffusion rates in this model. 
 
 resultc = diff1(initialC = 50, nx = 30, dx = 6, nt = 10, dt = 10, D = .7, area = 60)
 
